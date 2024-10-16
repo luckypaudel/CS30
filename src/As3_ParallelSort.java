@@ -11,7 +11,7 @@ public class As3_ParallelSort {
         System.out.println("Enter 3 to show the number of people from United states ");
         System.out.println("Enter 4 to print people from a specific country ");
         System.out.println("Press 5 to end game ");
-        int choice = Library.input.nextline();
+        int choice = Library.input.nextInt();
         while(gameOn) {
 
             if (choice == 1) {
