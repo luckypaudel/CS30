@@ -8,47 +8,57 @@ public class As3_ParallelSort {
 
     public static void run() {
         boolean gameOn = true;
+
         System.out.println("Enter 1 to sort by Name ");
         System.out.println("Enter 2 to sort by Age ");
-        System.out.println("Enter 3 to show the number of people from United states ");
-        System.out.println("Enter 4 to search for someone ");
-        System.out.println("Press 5 to end game ");
+        System.out.println("Enter 3 to print from Country ");
+        System.out.println("Enter 4 to show the number of people from United states ");
+        System.out.println("Press 5 to find people at a specific age ");
+        System.out.println("Press 6 to end game");
         int choice = Library.input.nextInt();
         Library.input.nextLine();
 
 
-        if (gameOn) {
+        while (gameOn) {
 
+            if (choice == 0){
+                System.out.println("Enter 1 to sort by Name ");
+                System.out.println("Enter 2 to sort by Age ");
+                System.out.println("Enter 3 to print from Country ");
+                System.out.println("Enter 4 to show the number of people from United states ");
+                System.out.println("Press 5 to find people at a specific age ");
+                System.out.println("Press 6 to end game");
+                 choice = Library.input.nextInt();
+                Library.input.nextLine();
+            }
             if (choice == 1) {
                 sortByName();
                 for (int i = 0; i < allNames.length; i++) {
 
 
-                    System.out.println(allNames[i] + "  Age : " + allAges[i] + " BirthCountry: " + allBirthplaces[i]);
+                    System.out.println(allNames[i] + "  Age : " + allAges[i] + " BirthCountry: " + allBirthplaces[i] + " Networths: " + allNetworths[i] + " Billion ");
+                    choice = 0;
                 }
             } else if (choice == 2) {
                 sortByAge();
                 for (int i = 0; i < allNames.length; i++) {
 
 
-                    System.out.println(allNames[i] + "  Age : " + allAges[i] + " BirthCountry: " + allBirthplaces[i]);
+                    System.out.println(allNames[i] + "  Age : " + allAges[i] + " BirthCountry: " + allBirthplaces[i] + " Networths: " + allNetworths[i] + " Billion ");
                 }
+                choice = 0;
 
             } else if (choice == 3) {
-                countfromUs();
+                printbyCountry();
+                choice = 0;
             } else if (choice == 4) {
-               System.out.println("Who are you looking for?");
-               String userChoice = Library.input.nextLine();
-
-               for(int i = 0; i<allNames.length; i++){
-
-                   if(userChoice.equalsIgnoreCase(allNames[i])){
-int foundIndex = i;
-                       System.out.println("Your person was found");
-                       System.out.println(allNames[foundIndex] + "  Age : " + allAges[foundIndex] + " Birth Country: " + allBirthplaces[foundIndex] +" " +allNetworths[foundIndex] + " B ");
-                   }
-               }
+                countfromUs();
+                choice = 0;
             } else if (choice == 5) {
+                ageFinder();
+choice =0;
+            }
+            else if (choice == 6){
                 System.out.println("Thank you for trying!");
             }
         }
@@ -74,6 +84,7 @@ int foundIndex = i;
             int temp2 = allAges[i];
             allAges[i] = allAges[lowestIndex];
             allAges[lowestIndex] = temp2;
+
         }
 
     }
@@ -97,6 +108,7 @@ int foundIndex = i;
             int temp2 = allAges[i];
             allAges[i] = allAges[lowestIndex];
             allAges[lowestIndex] = temp2;
+
         }
 
     }
@@ -110,8 +122,50 @@ int foundIndex = i;
             }
         }
         System.out.println(" There are " + count + " of people from the United States in this list ");
+
     }
-}
+
+    public static void ageFinder() {
+        System.out.println("What age do you want to look for");
+        int userChoice = Library.input.nextInt();
+        boolean found = false;
+        for (int i = 0; i < allAges.length; i++) {
+
+            if (userChoice == allAges[i]) {
+                int foundIndex = i;
+              found = true;
+                System.out.println(allNames[i] + "  Age : " + allAges[i] + " Birth Country: " + allBirthplaces[i] + " Networths: " + allNetworths[i] + " Billion ");
+
+                }
+            }
+
+
+         if(found != true){
+            System.out.println("Not found.");
+        }
+
+    }
+
+    public static void printbyCountry() {
+        System.out.println("What country do you want to filter for");
+        String userChoice = Library.input.nextLine();
+        boolean found = false;
+        int count = 0;
+        for (int i = 0; i < allBirthplaces.length; i++) {
+            if (allBirthplaces[i].equals(userChoice)) {
+                found = true;
+                System.out.println(allNames[i] + "  Age : " + allAges[i] + " Birth Country: " + allBirthplaces[i] + " Networths: " + allNetworths[i] + " Billion ");
+            }
+        }
+        if(!found){
+            System.out.println("Not found");
+        }
+
+    }
+        }
+
+
+
 
 
 
